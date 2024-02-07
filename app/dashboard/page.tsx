@@ -51,7 +51,7 @@ export default async function Dashboard({
                         })}
                     </tbody>
                 </table>
-                <div className='relative min-w-full'>
+                {/* <div className='relative min-w-full'>
                     <div className='flex flex-row items-end py-10 
                         justify-end right-0 top-40'>
                         {[...Array(totalPages).keys()].map((item) => {
@@ -65,7 +65,7 @@ export default async function Dashboard({
                             )
                         })}
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )

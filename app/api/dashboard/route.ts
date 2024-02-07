@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import Blog from "@/app/models/blog.model";
-import connectDB from "@/app/lib/mongodb";
+import Blog from "@/models/blog.model";
+import connectDB from "@/lib/mongodb";
 import { BlogPostModel } from "@/app/dashboard/types";
 
 export async function GET(request: NextRequest):Promise<NextResponse> {

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import NavbarControl from "./components/navbar";
-import SidebarControl from "./components/sidebar";
+import NavbarControl from "../components/navbar";
+import SidebarControl from "../components/sidebar";
 import { Footer } from "flowbite-react";
 
 const inter = Inter({ subsets: ["latin"] });

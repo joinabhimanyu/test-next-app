@@ -1,6 +1,6 @@
 import { BlogSearchParams } from "@/app/dashboard/types";
-import connectDB from "@/app/lib/mongodb";
-import Blog from "@/app/models/blog.model";
+import connectDB from "@/lib/mongodb";
+import Blog from "@/models/blog.model";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request:NextRequest) {

@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import { getPosts } from "./action";
-import PaginationControl from "../components/pagination";
+import PaginationControl from "../../components/pagination";
 
 export default async function Posts() {
     const posts = await getPosts();
