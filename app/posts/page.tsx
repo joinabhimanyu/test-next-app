@@ -3,7 +3,7 @@ import { getPosts } from "./action";
 import PaginationControl from "../../components/pagination";
 
 export default async function Posts() {
-    const posts = await getPosts();
+    let {posts, total, skip, limit} = await getPosts(10);
     return (
         <div className="flex flex-col items-center justify-between px-10">
             {/* placeholder for table */}
@@ -43,7 +43,11 @@ export default async function Posts() {
                 {/* placeholder for pagination */}
                 <div className='flex flex-row items-end py-10 
                         justify-end right-0 top-40'>
-                            <PaginationControl/>
+                            {/* onPageChangeProp={async(page:number)=>{
+                                console.log('current page: ', page);
+                                posts = await getPosts(20);
+                            }} */}
+                            <PaginationControl initialPage={1} totalPages={50}/>
                         </div>
             </div>
         </div>
