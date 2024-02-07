@@ -4,8 +4,9 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: white;
   --background-end-rgb: 255, 255, 255;
+  /* 214, 219, 220*/
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,5 +30,14 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .max-h-400 {
+    max-height: 400px;
+  }
+  .max-h-500 {
+    max-height: 500px;
+  }
+  .max-h-600 {
+    max-height: 600px;
   }
 }
