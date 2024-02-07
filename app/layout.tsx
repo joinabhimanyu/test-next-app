@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavbarControl from "./components/navbar";
 import SidebarControl from "./components/sidebar";
+import { Footer } from "flowbite-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +20,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="container">
-          <div className="flex flex-col min-h-screen">
+        <div className="container min-w-full">
+          <div className="flex flex-col min-h-screen min-w-full">
             <NavbarControl />
             <div className="flex flex-row min-w-full py-5">
               <SidebarControl />
               {children}
             </div>
+            <div className="flex min-w-full fixed bottom-0">
+              <Footer container>
+                <Footer.Copyright href="#" by="Flowbite™" year={2022} />
+                <Footer.LinkGroup>
+                  <Footer.Link href="#">About</Footer.Link>
+                  <Footer.Link href="#">Privacy Policy</Footer.Link>
+                  <Footer.Link href="#">Licensing</Footer.Link>
+                  <Footer.Link href="#">Contact</Footer.Link>
+                </Footer.LinkGroup>
+              </Footer>
+            </div>
+
           </div>
         </div>
       </body>
