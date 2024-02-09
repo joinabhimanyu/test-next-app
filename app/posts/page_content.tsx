@@ -5,6 +5,7 @@ import PaginationControl from "@/components/pagination";
 import { useEffect, useState } from "react";
 import { IoClose } from 'react-icons/io5';
 import MainPageHolder from "@/components/main_page";
+import GridView, { GridViewClickableTemplate, GridViewOptions } from "@/components/grid_view";
 
 export default function PageContent({ posts, total, skip, limit }: {
     posts: any,
@@ -13,63 +14,47 @@ export default function PageContent({ posts, total, skip, limit }: {
     limit: number
 }) {
 
+    const config: GridViewOptions = {
+        columns: [{
+            columnDataName: 'userId',
+            columnName: 'User Id',
+            clickable: false
+        }, {
+            columnDataName: 'id',
+            columnName: 'Id',
+            clickable: false
+        }, {
+            columnDataName: 'title',
+            columnName: 'Title',
+            clickable: false
+        }, {
+            columnDataName: 'body',
+            columnName: 'Body',
+            clickable: false
+        }],
+        idColumn: 'id',
+        wantEditing: true,
+        clickableTemplate: GridViewClickableTemplate.TableRow,
+        onRowClick: (record: any, value?: boolean) => {
+            console.log(record);
+        },
+        wantPaging: true,
+        total,
+        skip,
+        limit,
+        onPageChange: async (page: number) => {
+            console.log('current page: ', page);
+        }
+    }
+
     return (
         <MainPageHolder>
             {/* main page panel */}
             <MainPageHolder.MainPage>
-                {/* placeholder for table */}
-                <div className='min-h-fit overflow-x-auto max-h-600'>
-                    <Table>
-                        <TableHead className="sticky">
-                            <TableHeadCell>User Id</TableHeadCell>
-                            <TableHeadCell>Id</TableHeadCell>
-                            <TableHeadCell>Title</TableHeadCell>
-                            <TableHeadCell>Body</TableHeadCell>
-                            <TableHeadCell>
-                                <span className="sr-only">Edit</span>
-                            </TableHeadCell>
-                        </TableHead>
-                        <TableBody className="divide-y">
-                            {posts.map((item: any) => {
-                                return (
-                                    <MainPageHolder.DetailPaneClickableContent
-                                        key={item.id}
-                                        onToggleDetailPaneProp={(value: boolean) => console.log('detail pane value', value)}>
-                                        {/* onClick={() => showDetailPaneAnimation()} */}
-                                        <TableRow key={item.id} className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                                        >
-                                            <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                                {item.userId}
-                                            </TableCell>
-                                            <TableCell>{item.id}</TableCell>
-                                            <TableCell>{item.title}</TableCell>
-                                            <TableCell>{item.body}</TableCell>
-                                            <TableCell>
-                                                <a href="#" className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
-                                                    Edit
-                                                </a>
-                                            </TableCell>
-                                        </TableRow>
-                                        <></>
-                                    </MainPageHolder.DetailPaneClickableContent>
-                                )
-                            })}
-                        </TableBody>
-                    </Table>
-                </div>
-                {/* placeholder for pagination */}
-                <div className='relative min-w-full'>
-                    {/* placeholder for pagination */}
-                    <div className='flex flex-row items-end py-10 
-                        justify-end right-0 top-40'>
-                        {/*  */}
-                        <PaginationControl total={total} skip={skip} limit={limit}
-                            onPageChangeProp={async (page: number) => {
-                                console.log('current page: ', page);
-                                // posts = await getPosts(20);
-                            }} />
-                    </div>
-                </div>
+                <GridView
+                    records={posts}
+                    options={config}
+                />
             </MainPageHolder.MainPage>
 
 
@@ -86,51 +71,7 @@ export default function PageContent({ posts, total, skip, limit }: {
 
                 {/* placeholder for table */}
                 <MainPageHolder.DetailPaneContent>
-                    <div className='min-h-fit overflow-x-auto max-h-600 w-full'>
-                        <Table>
-                            <TableHead className="sticky">
-                                <TableHeadCell>User Id</TableHeadCell>
-                                <TableHeadCell>Id</TableHeadCell>
-                                <TableHeadCell>Title</TableHeadCell>
-                                <TableHeadCell>Body</TableHeadCell>
-                                <TableHeadCell>
-                                    <span className="sr-only">Edit</span>
-                                </TableHeadCell>
-                            </TableHead>
-                            <TableBody className="divide-y">
-                                {posts.map((item: any) => {
-                                    return (
-                                        <TableRow key={item.id} className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                                        >
-                                            <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                                {item.userId}
-                                            </TableCell>
-                                            <TableCell>{item.id}</TableCell>
-                                            <TableCell>{item.title}</TableCell>
-                                            <TableCell>{item.body}</TableCell>
-                                            <TableCell>
-                                                <a href="#" className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
-                                                    Edit
-                                                </a>
-                                            </TableCell>
-                                        </TableRow>
-                                    )
-                                })}
-                            </TableBody>
-                        </Table>
-                    </div>
-                    {/* placdeholder for pagination */}
-                    <div className='relative min-w-full'>
-                        {/* placeholder for pagination */}
-                        <div className='flex flex-row items-end py-10 
-                        justify-end right-0 top-40'>
-                            {/* onPageChangeProp={async(page:number)=>{
-                                console.log('current page: ', page);
-                                posts = await getPosts(20);
-                            }} */}
-                            {/* <PaginationControl initialPage={1} totalPages={50} /> */}
-                        </div>
-                    </div>
+                    <GridView records={posts} options={config} />
                 </MainPageHolder.DetailPaneContent>
 
             </MainPageHolder.DetailPane>
